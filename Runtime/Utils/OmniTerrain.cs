@@ -396,7 +396,7 @@ namespace AurecasLib.Utils {
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(OmniTerrain))]
-    public class OmniTerrainEditor : Editor {
+    public class OmniTerrainEditor : UnityEditor.Editor {
         OmniTerrain tile { get { return (target as OmniTerrain); } }
         GUIStyle styleHeaderLabel;
         bool tilesetExpanded = true;

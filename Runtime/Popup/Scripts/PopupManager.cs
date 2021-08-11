@@ -74,6 +74,7 @@ namespace AurecasLib.Popup {
             YieldableTask<GameObject> yt = new YieldableTask<GameObject>(Addressables.InstantiateAsync(assetReference).Task);
             yield return yt;
 
+
             yt.GetResult().transform.SetParent(canvas.transform, false);
             PopupWindow popup = yt.GetResult().GetComponent<PopupWindow>();
             popup.SetBlurRenderer(blurRenderer, mat);

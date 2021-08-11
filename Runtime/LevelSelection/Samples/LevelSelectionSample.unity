@@ -464,8 +464,15 @@ MonoBehaviour:
   RightButton: {fileID: 7018659193595141214}
   dragDetector: {fileID: 3898899672229136249}
   snapToContent: 1
+  forceChildToFullWidth: 0
   scrollSensitivity: 0.35
   levelGroupText: {fileID: 5301332145767386193}
+  index: 0
+  rect: {fileID: 0}
+  dragMode: 0
+  sectionWidth: 0
+  horizontalLayout: {fileID: 0}
+  currentDragPosition: {x: 0, y: 0}
 --- !u!224 &1136933717005105140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -574,6 +581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65966495063efa442a4b7e760e3b73c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerDown: 0
+  dragging: 0
 --- !u!1 &4438618486917611069
 GameObject:
   m_ObjectHideFlags: 0
