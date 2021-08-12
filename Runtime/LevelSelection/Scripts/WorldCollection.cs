@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "World Collection", menuName = "Scriptable Objects/World Collection")]
-public class WorldCollection : ScriptableObject
-{
-    public WorldSO[] worlds;
+namespace AurecasLib.Levels {
+    [CreateAssetMenu(fileName = "World Collection", menuName = "AurecasLib/Worlds/World Collection")]
+    public class WorldCollection : ScriptableObject {
+        public WorldSO[] worlds;
+    }
 }
