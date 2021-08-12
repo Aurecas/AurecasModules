@@ -1,10 +1,7 @@
-using AurecasLib.LevelSelection;
-using System.Collections;
-using System.Collections.Generic;
+using AurecasLib.UI;
 using UnityEngine;
 
-public class LevelSelectSample : MonoBehaviour
-{
+public class LevelSelectSample : MonoBehaviour {
     public HorizontalCaroussel horizontalCaroussel;
     public int itemCount;
 

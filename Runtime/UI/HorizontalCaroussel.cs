@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AurecasLib.LevelSelection {
+namespace AurecasLib.UI {
     [RequireComponent(typeof(HorizontalLayoutGroup))]
     public class HorizontalCaroussel : MonoBehaviour {
 
@@ -38,9 +38,9 @@ namespace AurecasLib.LevelSelection {
             dragDetector.OnDragBegin = BeginDragEvent;
             dragDetector.OnDragEnded = EndDragEvent;
 
-            if(LeftButton)
+            if (LeftButton)
                 LeftButton.onClick.AddListener(PreviousItem);
-            if(RightButton)
+            if (RightButton)
                 RightButton.onClick.AddListener(NextItem);
         }
 
@@ -119,9 +119,9 @@ namespace AurecasLib.LevelSelection {
         }
 
         public void UpdateArrows() {
-            if(LeftButton)
+            if (LeftButton)
                 LeftButton.interactable = index != 0;
-            if(RightButton)
+            if (RightButton)
                 RightButton.interactable = index != transform.childCount - 1;
         }
 
