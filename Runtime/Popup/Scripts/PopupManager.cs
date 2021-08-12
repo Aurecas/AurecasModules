@@ -13,6 +13,7 @@ namespace AurecasLib.Popup {
         [HideInInspector]
         public PopupWindow LoadedPopup;
         public BlurRenderer.ShaderParams blurParams;
+        public string sortingLayer = "UI";
 
         List<PopupWindow> loadedPopups;
         Dictionary<int, GameObject> createdCanvases;
@@ -67,6 +68,7 @@ namespace AurecasLib.Popup {
                 cv.sortingOrder = layerOrder;
                 cv.renderMode = RenderMode.ScreenSpaceCamera;
                 cv.worldCamera = Camera.main;
+                cv.sortingLayerName = sortingLayer;
                 createdCanvases.Add(layerOrder, canvas);
             }
 
