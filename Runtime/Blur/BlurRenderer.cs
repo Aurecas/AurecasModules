@@ -52,7 +52,7 @@ namespace AurecasLib.Blur {
             RenderFromScreen(tex, param);
             
             // Create material and assign texture
-            Material mat = new Material(Shader.Find("Aurecas/GaussianBlur"));
+            Material mat = new Material(Shader.Find("AurecasLib/Blur/GaussianBlur"));
             mat.SetTexture("_MobileBlur", tex);
             mat.SetFloat("_Lightness", param.brightness);
             mat.SetFloat("_Saturation", param.saturation);
@@ -70,7 +70,7 @@ namespace AurecasLib.Blur {
             RenderFromTexture(source, tex, param);
 
             // Create material and assign texture
-            Material mat = new Material(Shader.Find("Aurecas/GaussianBlur"));
+            Material mat = new Material(Shader.Find("AurecasLib/Blur/GaussianBlur"));
             mat.SetTexture("_MobileBlur", tex);
             mat.SetFloat("_Lightness", param.brightness);
             mat.SetFloat("_Saturation", param.saturation);

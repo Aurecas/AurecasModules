@@ -1,4 +1,4 @@
-﻿Shader "Aurecas/GaussianBlur"
+﻿Shader "AurecasLib/Blur/GaussianBlur"
 {
 	Properties
 	{
