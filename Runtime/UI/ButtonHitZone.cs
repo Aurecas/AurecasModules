@@ -37,8 +37,9 @@ namespace AurecasLib.UI {
 
             // create transparent graphic
             gobj.AddComponent<EmptyGraphic>();
-            //gobj.AddComponent<CanvasRenderer>(); //2020 only
-
+            #if UNITY_2020_1_OR_NEWER
+            gobj.AddComponent<CanvasRenderer>(); //2020 only
+            #endif
             // delegate events
             EventTrigger eventTrigger = gobj.AddComponent<EventTrigger>();
             // pointer up
