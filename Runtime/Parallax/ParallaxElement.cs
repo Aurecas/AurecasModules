@@ -4,6 +4,7 @@ namespace AurecasLib.Parallax {
     public class ParallaxElement : MonoBehaviour {
         public float factor = 0;
         public Vector2 direction;
+        public Vector2 offset;
         Vector2 originalPos;
 
         private void Start() {
@@ -13,7 +14,7 @@ namespace AurecasLib.Parallax {
         private void LateUpdate() {
             Vector2 cameraPos = Camera.main.transform.position;
             Vector2 dif = (cameraPos - originalPos) * direction;
-            transform.position = cameraPos - dif * factor;
+            transform.position = cameraPos - dif * factor + offset;
         }
     }
 }
