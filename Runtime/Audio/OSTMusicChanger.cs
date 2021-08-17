@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class OSTMusicChanger : MonoBehaviour
-{
-    public AudioClip musicToChange;
+namespace AurecasLib.Audio {
+    public class OSTMusicChanger : MonoBehaviour {
+        public AudioClip musicToChange;
 
-    public void Start() {
-        if (OSTManager.Instance) {
-            OSTManager.Instance.PlayClip(musicToChange);
+        public void Start() {
+            if (OSTManager.Instance) {
+                OSTManager.Instance.PlayClip(musicToChange);
+            }
         }
     }
 }
