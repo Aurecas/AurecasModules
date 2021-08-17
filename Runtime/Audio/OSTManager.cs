@@ -9,8 +9,11 @@ namespace AurecasLib.Audio {
         AudioClip bufferedClip;
         float bufferedPosition;
 
+        float originalVolume;
+
         private void Awake() {
             source = GetComponent<AudioSource>();
+            originalVolume = source.volume;
 
             if (Instance == null) {
                 Instance = this;
@@ -35,7 +38,7 @@ namespace AurecasLib.Audio {
         }
 
         private void Update() {
-            source.volume = PlayerPrefs.GetFloat("BGMVolume", 1);
+            source.volume = PlayerPrefs.GetFloat("BGMVolume", 1) * originalVolume;
             if (PlayerPrefs.GetInt("BGMMute", 0) == 1) source.volume = 0;
 
             if (!IsPlaying()) {
