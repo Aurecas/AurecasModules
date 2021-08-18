@@ -154,7 +154,7 @@ namespace AurecasLib.Tutorial {
 
             // Create trigger object
             if (displayMode != DisplayMode.AlwaysOn || enterEvent != null || exitEvent != null) {
-                if (coll) {
+                
                     GameObject trigger = new GameObject($"{name} Trigger", typeof(BoxCollider2D), typeof(TutorialTextTrigger));
                     trigger.transform.SetParent(transform.parent);
                     trigger.transform.position = transform.position;
@@ -165,7 +165,7 @@ namespace AurecasLib.Tutorial {
                     myTrigger = trigger.GetComponent<TutorialTextTrigger>();
                     myTrigger.master = this;
                     myTrigger.playerTag = playerTag;
-
+                if (coll) {
                     var triggerColl = trigger.GetComponent<BoxCollider2D>();
                     triggerColl.size = coll.size;
                     triggerColl.offset = coll.offset;
