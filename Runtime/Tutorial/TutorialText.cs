@@ -140,6 +140,11 @@ namespace AurecasLib.Tutorial {
                     }
                 }
             }
+            if (Input.GetMouseButtonDown(0)) {
+                if (freezeCoroutine != null) {
+                    StopCoroutine(freezeCoroutine);
+                }
+            }
         }
 
         void Start() {
