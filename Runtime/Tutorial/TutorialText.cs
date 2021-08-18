@@ -30,10 +30,10 @@ namespace AurecasLib.Tutorial {
         // Components
         Animator myAnimator;
         TutorialTextTrigger myTrigger;
-        Coroutine freezeCoroutine;
 
         // Internal
         bool isHiding, isShowing, isEntering, isExiting;
+        bool freezeSkipped;
 
         public void OnEnter() {
             if (displayMode != DisplayMode.AlwaysOn) {
@@ -66,11 +66,11 @@ namespace AurecasLib.Tutorial {
                 if (delayToHide > 0) {
                     if (!isHiding) {
                         isHiding = true;
-                        freezeCoroutine = myTrigger.StartCoroutine(HideDelayed());
+                        myTrigger.StartCoroutine(HideDelayed());
                     }
                 }
                 else {
-                    freezeCoroutine = myTrigger.StartCoroutine(HideDelayed());
+                    myTrigger.StartCoroutine(HideDelayed());
                 }
             }
 
@@ -101,7 +101,13 @@ namespace AurecasLib.Tutorial {
             isShowing = false;
 
             if (freezeOnShow) {
-                yield return new WaitForSecondsRealtime(freezeTimeout);
+                float t = 0;
+                while (t < freezeTimeout) {
+                    t += Time.unscaledDeltaTime;
+                    yield return null;
+                    if (freezeSkipped) break;
+                }
+                freezeSkipped = false;
                 Time.timeScale = lastTimeScale;
             }
         }
@@ -134,16 +140,12 @@ namespace AurecasLib.Tutorial {
         private void Update() {
             if (Input.touchCount > 0) {
                 Touch touch = Input.GetTouch(0);
-                if(touch.phase == TouchPhase.Began) {
-                    if(freezeCoroutine != null) {
-                        StopCoroutine(freezeCoroutine);
-                    }
+                if (touch.phase == TouchPhase.Began) {
+                    freezeSkipped = true;
                 }
             }
             if (Input.GetMouseButtonDown(0)) {
-                if (freezeCoroutine != null) {
-                    StopCoroutine(freezeCoroutine);
-                }
+                freezeSkipped = true;
             }
         }
 
@@ -157,7 +159,7 @@ namespace AurecasLib.Tutorial {
                 trigger.transform.position = transform.position;
                 trigger.transform.rotation = transform.rotation;
                 trigger.transform.localScale = transform.localScale;
-                
+
 
                 myTrigger = trigger.GetComponent<TutorialTextTrigger>();
                 myTrigger.master = this;
