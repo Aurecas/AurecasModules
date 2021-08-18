@@ -30,6 +30,7 @@ namespace AurecasLib.Tutorial {
         // Components
         Animator myAnimator;
         TutorialTextTrigger myTrigger;
+        Coroutine freezeCoroutine;
 
         // Internal
         bool isHiding, isShowing, isEntering, isExiting;
@@ -65,11 +66,11 @@ namespace AurecasLib.Tutorial {
                 if (delayToHide > 0) {
                     if (!isHiding) {
                         isHiding = true;
-                        myTrigger.StartCoroutine(HideDelayed());
+                        freezeCoroutine = myTrigger.StartCoroutine(HideDelayed());
                     }
                 }
                 else {
-                    myTrigger.StartCoroutine(HideDelayed());
+                    freezeCoroutine = myTrigger.StartCoroutine(HideDelayed());
                 }
             }
 
@@ -127,6 +128,17 @@ namespace AurecasLib.Tutorial {
         void OnDestroy() {
             if (myTrigger) {
                 Destroy(myTrigger);
+            }
+        }
+
+        private void Update() {
+            if (Input.touchCount > 0) {
+                Touch touch = Input.GetTouch(0);
+                if(touch.phase == TouchPhase.Began) {
+                    if(freezeCoroutine != null) {
+                        StopCoroutine(freezeCoroutine);
+                    }
+                }
             }
         }
 
