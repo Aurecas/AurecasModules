@@ -17,6 +17,7 @@ namespace AurecasLib.Tutorial {
         [SerializeField] bool freezeOnShow;
         [SerializeField] float freezeTimeout = 1;
         [SerializeField] string animatorTriggerName = "Hide";
+        [SerializeField] string playerTag = "Player";
 
         [Header("Enter Trigger")]
         [SerializeField] float delayToEnter;
@@ -139,9 +140,11 @@ namespace AurecasLib.Tutorial {
                 trigger.transform.position = transform.position;
                 trigger.transform.rotation = transform.rotation;
                 trigger.transform.localScale = transform.localScale;
+                
 
                 myTrigger = trigger.GetComponent<TutorialTextTrigger>();
                 myTrigger.master = this;
+                myTrigger.playerTag = playerTag;
 
                 var triggerColl = trigger.GetComponent<BoxCollider2D>();
                 triggerColl.size = coll.size;
