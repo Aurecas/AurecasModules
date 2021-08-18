@@ -40,10 +40,12 @@ namespace AurecasLib.Tutorial {
                 if (delayToShow > 0) {
                     if (!isShowing) {
                         isShowing = true;
+                        Debug.Log("OnEnter");
                         myTrigger.StartCoroutine(ShowDelayed());
                     }
                 }
                 else {
+                    Debug.Log("OnEnter");
                     myTrigger.StartCoroutine(ShowDelayed());
                 }
             }
@@ -92,23 +94,30 @@ namespace AurecasLib.Tutorial {
         }
 
         IEnumerator ShowDelayed() {
-            float lastTimeScale = Time.timeScale;
-            if (freezeOnShow) {
-                Time.timeScale = 0;
-            }
+
             yield return new WaitForSeconds(delayToShow);
             gameObject.SetActive(true);
             isShowing = false;
 
             if (freezeOnShow) {
+                Debug.Log("Freeze time start");
+                float lastTimeScale = Time.timeScale;
+                if (freezeOnShow) {
+                    Time.timeScale = 0;
+                }
+
                 float t = 0;
                 while (t < freezeTimeout) {
                     t += Time.unscaledDeltaTime;
                     yield return null;
-                    if (freezeSkipped) break;
+                    if (freezeSkipped) {
+                        Debug.Log("Freeze Skipped");
+                        break;
+                    }
                 }
                 freezeSkipped = false;
                 Time.timeScale = lastTimeScale;
+                Debug.Log("Freeze finished, back to time scale: " + Time.timeScale);
             }
         }
 
@@ -154,17 +163,17 @@ namespace AurecasLib.Tutorial {
 
             // Create trigger object
             if (displayMode != DisplayMode.AlwaysOn || enterEvent != null || exitEvent != null) {
-                
-                    GameObject trigger = new GameObject($"{name} Trigger", typeof(TutorialTextTrigger));
-                    trigger.transform.SetParent(transform.parent);
-                    trigger.transform.position = transform.position;
-                    trigger.transform.rotation = transform.rotation;
-                    trigger.transform.localScale = transform.localScale;
+
+                GameObject trigger = new GameObject($"{name} Trigger", typeof(TutorialTextTrigger));
+                trigger.transform.SetParent(transform.parent);
+                trigger.transform.position = transform.position;
+                trigger.transform.rotation = transform.rotation;
+                trigger.transform.localScale = transform.localScale;
 
 
-                    myTrigger = trigger.GetComponent<TutorialTextTrigger>();
-                    myTrigger.master = this;
-                    myTrigger.playerTag = playerTag;
+                myTrigger = trigger.GetComponent<TutorialTextTrigger>();
+                myTrigger.master = this;
+                myTrigger.playerTag = playerTag;
                 if (coll) {
                     trigger.AddComponent<BoxCollider2D>();
 
