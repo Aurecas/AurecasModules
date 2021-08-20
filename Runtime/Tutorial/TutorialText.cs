@@ -37,27 +37,15 @@ namespace AurecasLib.Tutorial {
 
         public void OnEnter() {
             if (displayMode != DisplayMode.AlwaysOn) {
-                if (delayToShow > 0) {
-                    if (!isShowing) {
-                        isShowing = true;
-                        Debug.Log("OnEnter");
-                        myTrigger.StartCoroutine(ShowDelayed());
-                    }
-                }
-                else {
-                    Debug.Log("OnEnter");
+                if (!isShowing) {
+                    isShowing = true;
                     myTrigger.StartCoroutine(ShowDelayed());
                 }
             }
 
             if (enterEvent != null) {
-                if (delayToEnter > 0) {
-                    if (!isEntering) {
-                        isEntering = true;
-                        myTrigger.StartCoroutine(EnterDelayed());
-                    }
-                }
-                else {
+                if (!isEntering) {
+                    isEntering = true;
                     myTrigger.StartCoroutine(EnterDelayed());
                 }
             }
@@ -65,25 +53,15 @@ namespace AurecasLib.Tutorial {
 
         public void OnExit() {
             if (displayMode == DisplayMode.ShowAndHide) {
-                if (delayToHide > 0) {
-                    if (!isHiding) {
-                        isHiding = true;
-                        myTrigger.StartCoroutine(HideDelayed());
-                    }
-                }
-                else {
+                if (!isHiding) {
+                    isHiding = true;
                     myTrigger.StartCoroutine(HideDelayed());
                 }
             }
 
             if (exitEvent != null) {
-                if (delayToExit > 0) {
-                    if (!isExiting) {
-                        isExiting = true;
-                        myTrigger.StartCoroutine(ExitDelayed());
-                    }
-                }
-                else {
+                if (!isExiting) {
+                    isExiting = true;
                     myTrigger.StartCoroutine(ExitDelayed());
                 }
             }
@@ -100,7 +78,6 @@ namespace AurecasLib.Tutorial {
             isShowing = false;
 
             if (freezeOnShow) {
-                Debug.Log("Freeze time start");
                 float lastTimeScale = Time.timeScale;
                 if (freezeOnShow) {
                     Time.timeScale = 0;
@@ -111,13 +88,11 @@ namespace AurecasLib.Tutorial {
                     t += Time.unscaledDeltaTime;
                     yield return null;
                     if (freezeSkipped) {
-                        Debug.Log("Freeze Skipped");
                         break;
                     }
                 }
                 freezeSkipped = false;
                 Time.timeScale = lastTimeScale;
-                Debug.Log("Freeze finished, back to time scale: " + Time.timeScale);
             }
         }
 
